@@ -40,11 +40,16 @@ export async function getProductsByCategory(category_id = 0) {
 
 export async function getProductsFromArrayOfCategory(category_ids = []) {
   try {
-    let productsByCategory = [];
-    category_ids = category_ids.forEach((id) => {
-      productsByCategory.push(getProductsByCategory(id));
-    });
-    return response.data;
+    const fn = async () => {
+      let productsByCategory = {};
+      for (let i = 0; i < category_ids.length; i++) {
+        const id = category_ids[i];
+        const prod = await getProductsByCategory(id);
+        productsByCategory[id] = prod;
+      }
+      return productsByCategory;
+    };
+    return fn();
   } catch (error) {
     console.warn(error);
   }
