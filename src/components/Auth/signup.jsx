@@ -36,17 +36,49 @@ export default function Signup() {
       delete e["bot_field"];
       axios.post("/api/signup", e).then((data) => {
         console.log(data.data);
+        checkIfValidSignup(data.data);
       });
     }
   };
 
+  const checkIfValidSignup = (data) => {
+    if (data["code"]) {
+      //checking for what error code go returned and displaying an error mesg corresponfing to it
+      switch (data["code"]) {
+        case "registration-error-email-exists":
+          setErr(
+            <p>
+              An account is already registered with your email address.{" "}
+              <Link href="/login" className="underline">
+                Please Login
+              </Link>
+            </p>
+          );
+          break;
+
+        case "registration-error-username-exists":
+          setErr(<p>This Username is already taken</p>);
+          break;
+      }
+    } else {
+      redirect("/login");
+    }
+  };
+
   return (
-    <Card className="w-[450px] mx-5 ">
+    <Card className="w-[550px] min-w-[450px] mx-5">
       <CardHeader>
-        <Image src={LOGOIMG} width={400} height={200} alt="logo-img" />
+        <div className="w-full flex flex-row justify-center">
+          <Image src={LOGOIMG} width={400} height={200} alt="logo-img"></Image>
+        </div>
         <CardDescription className="text-center text-lg">
           Create your account
         </CardDescription>
+        {errMessage && (
+          <CardDescription className="bg-red-400 p-3 text-white tracking-wide">
+            {errMessage}
+          </CardDescription>
+        )}
       </CardHeader>
       <CardContent>
         <form>
@@ -183,25 +215,3 @@ export default function Signup() {
     </Card>
   );
 }
-
-const checkIfValidSignup = (data) => {
-  if (data["code"]) {
-    //checking for what error code go returned and displaying an error mesg corresponfing to it
-    switch (data["code"]) {
-      case "registration-error-email-exists":
-        setErr(
-          <p>
-            An account is already registered with your email address.{" "}
-            <Link href="/">Please Login</Link>
-          </p>
-        );
-        break;
-
-      case "registration-error-username-exists":
-        setErr(<p>This Username is already taken</p>);
-        break;
-    }
-  } else {
-    redirect("/login");
-  }
-};
