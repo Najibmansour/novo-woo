@@ -18,7 +18,7 @@ import axios from "axios";
 import { ErrorLabel } from "../ui/errorlabel";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 
 export default function LogIn() {
   const [errMessage, setErr] = useState();
@@ -65,7 +65,7 @@ export default function LogIn() {
       }
     } else {
       console.log(data);
-      cookies.set("woo_auth_token", data.token);
+      // cookies.set("woo_auth_token", data.token);
       redirect("/login");
     }
   };
