@@ -66,7 +66,7 @@ export default function Signup() {
   };
 
   return (
-    <Card className="w-[550px] min-w-[450px] mx-5">
+    <Card className="w-[550px] min-w-[350px] mx-5">
       <CardHeader>
         <div className="w-full flex flex-row justify-center">
           <Image src={LOGOIMG} width={400} height={200} alt="logo-img"></Image>
