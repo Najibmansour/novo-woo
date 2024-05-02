@@ -21,7 +21,7 @@ const Navbar = () => {
 
   return (
     <main
-      className={`sticky top-0 z-30 flex h-16  w-full flex-row items-center px-3 pt-3 transition-colors ${color && "bg-neutral-950"}`}
+      className={`sticky top-0 z-30 flex h-16  w-full flex-row items-center px-3 py-4 transition-colors ${color && "bg-neutral-950"}`}
     >
       <LOGOIMG className="ml-2 hidden md:block" />
       <MINILOGOIMG className="absolute left-[50%]  -translate-x-[50%] transform md:hidden" />
