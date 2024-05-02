@@ -11,10 +11,10 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import LOGOIMG from "../../../public/photos/logo.jpg";
 import Link from "next/link";
 import { ErrorLabel } from "../ui/errorlabel";
 import useAuth from "@/utils/hooks/useAuth";
+import LOGO from "../layout/logoImg";
 
 export default function Signup() {
   const { error, signUp } = useAuth();
@@ -37,7 +37,7 @@ export default function Signup() {
     <Card className="w-[550px] min-w-[350px] mx-5">
       <CardHeader>
         <div className="w-full flex flex-row justify-center">
-          <Image src={LOGOIMG} width={400} height={200} alt="logo-img"></Image>
+          <LOGO width={400} height={400} />
         </div>
         <CardDescription className="text-center text-lg">
           Create your account

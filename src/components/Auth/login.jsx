@@ -11,15 +11,10 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-
-import LOGOIMG from "../../../public/photos/logo.jpg";
-import Image from "next/image";
-import axios from "axios";
 import { ErrorLabel } from "../ui/errorlabel";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "@/utils/hooks/useAuth";
-// import { cookies } from "next/headers";
+import LOGO from "../layout/logoImg";
 
 export default function LogIn() {
   const { error, login } = useAuth();
@@ -31,7 +26,7 @@ export default function LogIn() {
   } = useForm();
 
   const onLogin = (e) => {
-    console.log("login client event");
+    // console.log("login client event");
     console.table(e);
     if (e["bot_field"] == "") {
       delete e["cpassword"];
@@ -43,8 +38,9 @@ export default function LogIn() {
   return (
     <Card className="w-[450px] mx-5">
       <CardHeader>
-        <Image src={LOGOIMG} width={400} height={200} alt="logo-img" />
-
+        <div className="w-full flex flex-row justify-center">
+          <LOGO width={400} height={400} />
+        </div>
         <CardDescription className="text-center text-lg">
           Login to your Account
         </CardDescription>
