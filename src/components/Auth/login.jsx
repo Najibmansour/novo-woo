@@ -18,15 +18,15 @@ import axios from "axios";
 import { ErrorLabel } from "../ui/errorlabel";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import useAuth from "@/utils/hooks/useAuth";
 // import { cookies } from "next/headers";
 
 export default function LogIn() {
-  const [errMessage, setErr] = useState();
+  const { error, login } = useAuth();
   const {
     register,
     handleSubmit,
     watch,
-
     formState: { errors },
   } = useForm();
 
@@ -36,37 +36,7 @@ export default function LogIn() {
     if (e["bot_field"] == "") {
       delete e["cpassword"];
       delete e["bot_field"];
-      axios
-        .post("/api/login", e)
-        .then((data) => {
-          console.log(data.data);
-          checkIfValidLogin(data.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  };
-
-  const checkIfValidLogin = (data) => {
-    if (data["code"]) {
-      //checking for what error code go returned and displaying an error mesg corresponfing to it
-      switch (data["code"]) {
-        case "[jwt_auth] incorrect_password":
-          setErr(
-            <p>The password you entered for this username is incorrect</p>
-          );
-          break;
-
-        case "[jwt_auth] too_many_retries":
-          const code = data.message.replace("<strong>ERROR</strong>: ", "");
-          setErr(<p>{code}</p>);
-          break;
-      }
-    } else {
-      console.log(data);
-      // cookies.set("woo_auth_token", data.token);
-      redirect("/login");
+      login(e);
     }
   };
 
@@ -78,9 +48,9 @@ export default function LogIn() {
         <CardDescription className="text-center text-lg">
           Login to your Account
         </CardDescription>
-        {errMessage && (
+        {error && (
           <CardDescription className="bg-red-400 p-3 text-white tracking-wide">
-            {errMessage}
+            {error}
           </CardDescription>
         )}
       </CardHeader>

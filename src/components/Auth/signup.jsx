@@ -11,57 +11,25 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-
 import LOGOIMG from "../../../public/photos/logo.jpg";
 import Link from "next/link";
 import { ErrorLabel } from "../ui/errorlabel";
-import axios from "axios";
-import { useState } from "react";
-import { redirect } from "next/navigation";
+import useAuth from "@/utils/hooks/useAuth";
 
 export default function Signup() {
-  const [errMessage, setErr] = useState();
+  const { error, signUp } = useAuth();
   const {
     register,
     handleSubmit,
     watch,
-
     formState: { errors },
   } = useForm();
 
   const onSignup = (e) => {
-    // console.log(e);
     if (e["bot_field"] == "") {
       delete e["cpassword"];
       delete e["bot_field"];
-      axios.post("/api/signup", e).then((data) => {
-        console.log(data.data);
-        checkIfValidSignup(data.data);
-      });
-    }
-  };
-
-  const checkIfValidSignup = (data) => {
-    if (data["code"]) {
-      //checking for what error code go returned and displaying an error mesg corresponfing to it
-      switch (data["code"]) {
-        case "registration-error-email-exists":
-          setErr(
-            <p>
-              An account is already registered with your email address.{" "}
-              <Link href="/login" className="underline">
-                Please Login
-              </Link>
-            </p>
-          );
-          break;
-
-        case "registration-error-username-exists":
-          setErr(<p>This Username is already taken</p>);
-          break;
-      }
-    } else {
-      redirect("/login");
+      signUp(e);
     }
   };
 
@@ -74,9 +42,9 @@ export default function Signup() {
         <CardDescription className="text-center text-lg">
           Create your account
         </CardDescription>
-        {errMessage && (
+        {error && (
           <CardDescription className="bg-red-400 p-3 text-white tracking-wide">
-            {errMessage}
+            {error}
           </CardDescription>
         )}
       </CardHeader>

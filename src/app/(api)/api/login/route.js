@@ -13,14 +13,14 @@ export async function POST(req, res) {
       // "https://novyikoncept.ru/headless/index.php/wp-json/jwt-auth/v1/token?username=john.doe&password=johnpasas"
     )
     .then((ret) => {
-      console.log(ret.data);
+      console.log("\n\n\n OK:", ret.data);
       responseVal = ret.data;
       responseStatus = ret.data.status;
     })
     .catch((err) => {
-      console.log(err.response.data);
+      console.log("\n\n\n ERR:", err.response.data);
       responseVal = err.response.data;
-      responseStatus = err.response.data.status;
+      responseStatus = err.response.data.data.status;
     });
 
   return NextResponse.json(responseVal, { status: responseStatus });

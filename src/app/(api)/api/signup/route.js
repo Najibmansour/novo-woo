@@ -14,18 +14,18 @@ export async function POST(req, res) {
       last_name: last_name,
     })
     .then((res) => {
-      // console.log(res.data);
+      console.log("\nOK:", res.data);
       resConfig.data = res.data;
       resConfig.status = res.data.status;
     })
     .catch((err) => {
-      // console.log(err.response.data);
+      console.log("\nErr:", err.response.data);
       resConfig.data = err.response.data;
-      resConfig.status = err.response.data.status;
+      resConfig.status = err.response.data.data.status;
     });
 
   console.log(val);
-  return NextResponse.json(resConfig.data, resConfig.status);
+  return NextResponse.json(resConfig.data, { status: resConfig.status });
 }
 
 // return NextResponse.json({ message: "asd" }, { status: 201 });
