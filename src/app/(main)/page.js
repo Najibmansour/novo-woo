@@ -12,10 +12,13 @@ export default async function Home() {
   // const prodsByCat = await getProductsFromArrayOfCategory(["15", "18", "21"]);
 
   return (
-    <main className="-mt-16 overflow-x-hidden">
+    <main className="-mt-20 overflow-x-hidden">
       <HeroSection />
       <HeroSection />
       <HeroSection />
     </main>
   );
 }
+// TODO: add invert prop to logo imge that inverts colors invert-[1] when its there
+// TODO: fix window (check if window is available before callling it)
+// TODO: fix login signup page (check vercel build erors)

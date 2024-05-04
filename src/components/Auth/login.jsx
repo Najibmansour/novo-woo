@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { ErrorLabel } from "../ui/errorlabel";
 import { useForm } from "react-hook-form";
 import useAuth from "@/utils/hooks/useAuth";
-import LOGO from "../layout/logoImg";
+import { LOGOIMG } from "../layout/logoImg";
 
 export default function LogIn() {
   const { error, login } = useAuth();
@@ -36,16 +36,16 @@ export default function LogIn() {
   };
 
   return (
-    <Card className="w-[450px] mx-5">
+    <Card className="mx-5 w-[450px]">
       <CardHeader>
-        <div className="w-full flex flex-row justify-center">
-          <LOGO width={400} height={400} />
+        <div className="flex w-full flex-row justify-center">
+          <LOGOIMG className="w-56 invert-[1]" />
         </div>
         <CardDescription className="text-center text-lg">
           Login to your Account
         </CardDescription>
         {error && (
-          <CardDescription className="bg-red-400 p-3 text-white tracking-wide">
+          <CardDescription className="bg-red-400 p-3 tracking-wide text-white">
             {error}
           </CardDescription>
         )}

@@ -14,7 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ErrorLabel } from "../ui/errorlabel";
 import useAuth from "@/utils/hooks/useAuth";
-import LOGO from "../layout/logoImg";
+import { LOGOIMG } from "../layout/logoImg";
 
 export default function Signup() {
   const { error, signUp } = useAuth();
@@ -34,16 +34,16 @@ export default function Signup() {
   };
 
   return (
-    <Card className="w-[550px] min-w-[350px] mx-5">
+    <Card className="mx-5 w-[550px] min-w-[350px]">
       <CardHeader>
-        <div className="w-full flex flex-row justify-center">
-          <LOGO width={400} height={400} />
+        <div className="flex w-full flex-row justify-center">
+          <LOGOIMG className="w-56 invert-[1]" />
         </div>
         <CardDescription className="text-center text-lg">
           Create your account
         </CardDescription>
         {error && (
-          <CardDescription className="bg-red-400 p-3 text-white tracking-wide">
+          <CardDescription className="bg-red-400 p-3 tracking-wide text-white">
             {error}
           </CardDescription>
         )}

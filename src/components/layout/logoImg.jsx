@@ -1,8 +1,6 @@
 import * as React from "react";
 export const LOGOIMG = (props) => (
   <svg
-    width={140}
-    height={60}
     viewBox="0 0 140 60"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -84,8 +82,6 @@ export const LOGOIMG = (props) => (
 
 export const MINILOGOIMG = (props) => (
   <svg
-    width={72}
-    height={41}
     viewBox="0 0 52 21"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

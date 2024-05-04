@@ -3,14 +3,14 @@ import React from "react";
 
 const Search = () => {
   return (
-    <div class="max-w-md mx-auto ">
-      <div class="relative flex items-center md:w-80 h-10 rounded-full focus-within:shadow-lg md:bg-white overflow-hidden">
-        <div class="grid place-items-center h-full md:w-10 text-gray-300">
-          <SearchIcon className="text-white md:text-gray-300 w-9 h-9 md:w-5 md:h-5" />
+    <div className="mx-auto max-w-md ">
+      <div className="relative flex h-10 items-center overflow-hidden rounded-full focus-within:shadow-lg md:w-80 md:bg-white">
+        <div className="grid h-full place-items-center text-gray-300 md:w-10">
+          <SearchIcon className="h-9 w-9 text-white md:h-5 md:w-5 md:text-gray-300" />
         </div>
 
         <input
-          class=" h-full md:w-full hidden md:block outline-none text-sm text-gray-700 pr-2"
+          className=" hidden h-full pr-2 text-sm text-gray-700 outline-none md:block md:w-full"
           type="text"
           id="search"
           placeholder="Search something.."
